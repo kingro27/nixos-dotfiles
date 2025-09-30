@@ -25,6 +25,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
+          ./modules
 
           nvf.nixosModules.default
 

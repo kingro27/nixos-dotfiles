@@ -4,6 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
+      ./modules/nvf-conf.nix
     ];
 
   # Bootloader.
@@ -41,22 +42,22 @@
 
   services.flatpak.enable = true;
 
-  programs.nvf = {
-    enable = true;
-    settings = {
-        vim = {
-                theme = {
-                        enable = true;
-                        name = "gruvbox";
-                        style = "dark";
-                };
+  #programs.nvf = {
+  #  enable = true;
+  #  settings = {
+  #      vim = {
+  #              theme = {
+  #                      enable = true;
+  #                      name = "gruvbox";
+  #                      style = "dark";
+  #              };
 
-                statusline.lualine.enable = true;
-                telescope.enable = true;
-                autocomplete.nvim-cmp.enable = true;
-        };
-      };
-    };
+  #              statusline.lualine.enable = true;
+  #              telescope.enable = true;
+  #              autocomplete.nvim-cmp.enable = true;
+  #      };
+  #    };
+  #  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.doctor = {
