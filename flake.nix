@@ -27,7 +27,6 @@
           ./configuration.nix
           ./modules
 
-          nvf.nixosModules.default
 
           home-manager.nixosModules.home-manager
           {
