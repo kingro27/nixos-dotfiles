@@ -4,8 +4,8 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ./nvf-conf.nix
-      ./tlp.nix
+      ./modules/nvf-conf.nix
+      ./modules/tlp.nix
     ];
 
   # Bootloader.
