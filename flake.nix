@@ -8,14 +8,6 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    #obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
-
-    nvf = {
-        url = "github:NotAShelf/nvf";
-        inputs.nixpkgs.follows = "nixpkgs";
-        #inputs.obsidian-nvim.follows = "obsidian-nvim";
-      };
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nvf, ... }: {
@@ -25,8 +17,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          nvf.nixosModules.default
-
 
           home-manager.nixosModules.home-manager
           {
