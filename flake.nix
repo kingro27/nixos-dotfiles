@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nvf, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, ... }: {
 
     nixosConfigurations = {
       TARDIS = nixpkgs.lib.nixosSystem {

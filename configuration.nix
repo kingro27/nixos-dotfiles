@@ -8,26 +8,40 @@
     ];
 
   # Bootloader.
-  boot = {
-    loader.grub = {
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
       enable = true;
       efiSupport = true;
-      efiInstallAsRemovable = true;
-    }
-  }
+      useOSProber = true;
+      #efiInstallAsRemovable = true;
+      device = "nodev";
+    };
+    systemd-boot.enable = false;
+  };
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "TARDIS"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "TARDIS";
+    networkmanager = {
+      enable = true;
+      dns = "none";
+      wifi.powersave = true;
+    };
+    useDHCP = false;
+    dhcpcd.enable = false;
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
+  };
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
@@ -58,8 +72,7 @@
 
   virtualisation.docker = {
   	enable = true;
-
-	rootless = {
+	  rootless = {
 		enable = true;
 		setSocketVariable = true;
 	};
@@ -114,7 +127,6 @@
     sxiv
     xwayland-satellite
     wl-clipboard
-    fastfetch
     bat
     eza
     adwaita-icon-theme
