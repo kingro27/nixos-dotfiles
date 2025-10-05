@@ -4,7 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ./modules/tlp.nix
+      #./modules/tlp.nix
     ];
 
   # Bootloader.
@@ -42,6 +42,25 @@
       "8.8.4.4"
     ];
   };
+
+  
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  
+
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+
+  programs.gamemode.enable = true;
+
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
+      "/home/user/.steam/root/compactibilitytools.d";
+  };
+
+  services.desktopManager.plasma6.enable = true;
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
@@ -86,12 +105,16 @@
 
   xdg.portal = {
   	enable = true;
-	extraPortals = with pkgs; [
-		xdg-desktop-portal-gnome
-	];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+    ];
   };
 
   programs.fish.enable = true;
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -130,6 +153,8 @@
     bat
     eza
     adwaita-icon-theme
+    protonup
+    mangohud
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
